@@ -1,0 +1,26 @@
+.profile h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-row {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row strong {
+  display: inline-block;
+  width: 120px;
+  color: #666;
+}
+

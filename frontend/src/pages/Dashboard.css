@@ -1,0 +1,42 @@
+.dashboard h1 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.action-list {
+  list-style: none;
+  padding: 0;
+}
+
+.action-list li {
+  margin-bottom: 10px;
+}
+
+.action-list a {
+  color: #007bff;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.action-list a:hover {
+  background-color: #f8f9fa;
+}
+
+.card ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.card ul li {
+  margin-bottom: 5px;
+}
+
