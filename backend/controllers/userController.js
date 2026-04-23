@@ -26,15 +26,15 @@ export const validateCreateUser = [
     .isLength({ min: 2, max: 100 })
     .withMessage('Name must be between 2 and 100 characters'),
   body('email')
-    .optional()
+    .optional({ checkFalsy: true })
     .isEmail()
     .withMessage('Invalid email format'),
   body('role')
-    .optional()
+    .optional({ checkFalsy: true })
     .isIn(['admin', 'operator', 'viewer'])
     .withMessage('Invalid role'),
   body('status')
-    .optional()
+    .optional({ checkFalsy: true })
     .isIn(['active', 'blocked'])
     .withMessage('Invalid status')
 ];
@@ -44,24 +44,24 @@ export const validateCreateUser = [
  */
 export const validateUpdateUser = [
   body('name')
-    .optional()
+    .optional({ checkFalsy: true })
     .trim()
     .isLength({ min: 2, max: 100 })
     .withMessage('Name must be between 2 and 100 characters'),
   body('email')
-    .optional()
+    .optional({ checkFalsy: true })
     .isEmail()
     .withMessage('Invalid email format'),
   body('role')
-    .optional()
+    .optional({ checkFalsy: true })
     .isIn(['admin', 'operator', 'viewer'])
     .withMessage('Invalid role'),
   body('status')
-    .optional()
+    .optional({ checkFalsy: true })
     .isIn(['active', 'blocked'])
     .withMessage('Invalid status'),
   body('password')
-    .optional()
+    .optional({ checkFalsy: true })
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters')
 ];
