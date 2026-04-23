@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import './Layout.css';
 
 const Layout = () => {
-  const { user, logout, isAdmin } = useAuth();
+  const { user, logout, isAdmin, isOperator } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -26,6 +26,9 @@ const Layout = () => {
                 <Link to="/admin" className="nav-link">Admin Panel</Link>
                 <Link to="/admin/logs" className="nav-link">Logs</Link>
               </>
+            )}
+            {isOperator && (
+              <Link to="/password-generation" className="nav-link">Password generation</Link>
             )}
             <Link to="/2fa" className="nav-link">2FA Setup</Link>
             <div className="nav-user">

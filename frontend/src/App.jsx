@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import AdminPanel from './pages/AdminPanel';
 import Logs from './pages/Logs';
 import TwoFactorSetup from './pages/TwoFactorSetup';
+import PasswordGeneration from './pages/PasswordGeneration';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -52,6 +53,14 @@ function App() {
           }
         />
         <Route path="2fa" element={<TwoFactorSetup />} />
+        <Route
+          path="password-generation"
+          element={
+            <ProtectedRoute requiredRole="operator">
+              <PasswordGeneration />
+            </ProtectedRoute>
+          }
+        />
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" />} />

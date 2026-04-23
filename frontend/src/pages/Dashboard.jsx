@@ -2,7 +2,7 @@ import { useAuth } from '../context/AuthContext';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, isOperator } = useAuth();
 
   return (
     <div className="dashboard">
@@ -24,6 +24,11 @@ const Dashboard = () => {
             <li>
               <a href="/2fa">Configure Two-Factor Authentication</a>
             </li>
+            {isOperator && (
+              <li>
+                <a href="/password-generation">Password generation</a>
+              </li>
+            )}
             {user?.role === 'admin' && (
               <>
                 <li>
