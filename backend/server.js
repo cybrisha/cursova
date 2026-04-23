@@ -15,6 +15,32 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const configuredFrontendUrl =
+  process.env.FRONTEND_URL || 'http://localhost:3000';
+const devLocalOrigin =
+  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
+/**
+ * CORS: in production only the configured origin is allowed. In development,
+ * any localhost / 127.0.0.1 origin is allowed so Vite can use another port
+ * when the default is already taken.
+ */
+const corsOrigin = (origin, callback) => {
+  if (!origin) {
+    return callback(null, true);
+  }
+  if (process.env.NODE_ENV === 'production') {
+    if (origin === configuredFrontendUrl) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  }
+  if (origin === configuredFrontendUrl || devLocalOrigin.test(origin)) {
+    return callback(null, true);
+  }
+  return callback(new Error('Not allowed by CORS'));
+};
+
 /**
  * Security middleware
  */
@@ -34,7 +60,7 @@ app.use(helmet({
  * CORS configuration
  */
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: corsOrigin,
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization']
